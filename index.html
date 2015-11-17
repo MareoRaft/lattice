@@ -2,14 +2,20 @@
 <html>
 <head>
 	<title>Lattice Proof of Combinatorics Identity</title>
+	<style>
+		img {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			padding: 22px;
+		}
+	</style>
 	<script type="text/x-mathjax-config">
 		MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
 	</script>
 	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 <body>
-	$\require{cancel}$
-
 	<p>Theorem: $$\sum_{k=0}^{k=n}\binom{2k}{k}\binom{2n-2k}{n-k}=4^n$$</p>
 
 	<p>Proof:</p><p>We will prove the above using only lattice grids.  To read this article, you must first have a basic understanding of lattice grids.  An example of a lattice grid can be found <a href="http://web.mit.edu/yufeiz/www/wc08/comb.pdf">here</a> in the second question.  The drawing in the linked example shows a rectangular lattice grid with line segments traveling right or up.  Our examples orient the grid so that the starting point is on top and the paths travel diagonally down, either right or left.</p>
