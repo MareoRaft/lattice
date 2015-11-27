@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Lattice Proof of Combinatorics Identity</title>
+	<title>Lattice</title>
 	<style>
 		img {
 			display: block;
@@ -18,12 +18,12 @@
 <body>
 	<p>Theorem: $$\sum_{k=0}^{k=n}\binom{2k}{k}\binom{2n-2k}{n-k}=4^n$$</p>
 
-	<p>Proof:</p><p>We will prove the above using only lattice grids.  To read this article, you must first have a basic understanding of lattice grids.  An example of a lattice grid can be found <a href="http://web.mit.edu/yufeiz/www/wc08/comb.pdf">here</a> in the second question.  The drawing in the linked example shows a rectangular lattice grid with line segments traveling right or up.  Our examples orient the grid so that the starting point is on top and the paths travel diagonally down, either right or left.</p>
+	<p>Proof:</p><p>We will prove the above using only lattice paths.  To read this article, you must first have a basic understanding of lattice paths.  An example of a lattice can be found <a href="http://copingwithcomputers.com/2013/07/06/lattice-paths/">here</a> or <a href="http://www.robertdickau.com/lattices.html">here</a>.  The second drawing (the orange one) in the linked example shows a lattice  that starts in the left corner and expands to the right.  Each edge travels diagonally up-right, or diagonally down-right.  <i>Our</i> lattices will start at the <i>top</i> corner and expand downward.  Each edge on a path travels diagonally left-down, or diagonally right-down.</p>
 
-	<p>Consider the pyramid below of height $2k$, where each path starts at the top and walks always downwards.  A red path and an orange path are shown as examples.</p>
+	<p>Consider the lattice below of height $2k$, where each path starts at the top and walks always downward.  A red path and an orange path are shown as examples.</p>
 	<img src="images/p01.initial_example.png" />
 
-	<p>I chose the variable $2k$ for the height because we will only be dealing with even height pyramids today.</p>
+	<p>I chose to use $2k$ for the height because we will only be dealing with even height lattices today.</p>
 
 	<p>Now consider the set of paths from the top to the bottom center (thanks to the even height, there will be a bottom *center*).  We will call this the <u>diamond set</u>.  Elements of this set are shown below as an example.  Each element is painted a single color.</p>
 	<img src="images/p02.diamond_set.png" />
@@ -50,7 +50,7 @@
 
 	<p>Let us now talk about the inverse of this function:</p>
 
-	<p>Take a fan path, and look at the bottom fan point.  Count the columns it is away from the center, then divide by $2$ to get the distance of the reflection line from the center.  Follow the fan path from the bottom upwards until it touches the reflection line.  This intersection is the <u>reflection point</u>!.  Reflect the bottom piece and rotate the top portion like we did before...</p>
+	<p>Take a fan path, and look at the bottom fan point.  Count the columns it is away from the center, then divide by $2$ to get the distance of the reflection line from the center.  Follow the fan path from the bottom upwards until it touches the reflection line.  This intersection is the <u>reflection point</u>!  Reflect the bottom piece and rotate the top portion like we did before...</p>
 
 	<p>...reflect...</p>
 	<img src="images/p09.inverse_reflection_before.png" />
@@ -64,13 +64,15 @@
 
 	<p>So the number of diamond paths is equal to the number of fan paths!  That number is $\binom{2k}{k}$.  (Diamond paths have length $2k$, and we must choose exactly $k$ of the edges to be in the diagonally right direction.)</p>
 
-	<p>Back to our handy dandy pyramid.  Consider that the pyramid has height $2n$, and we would like all of our paths to go through a center point at height $2k$, then avoid the center afterwards.</p>
+	<p>Back to our handy dandy lattice.  Consider that the lattice has height $2n$, and we would like to partition the set of all possible lattice paths in a certain way.  Every path passes intersects the center line at least once (because the first point of the path intersects the center line).  For each path, we can find its <i>bottommost</i> intersection with the center line (and call this the <u>cut point</u>).  We will identify each path with the height (say, $2k$) of its cut point, and this partitions the paths.</p>
+
+	<p>Each path goes through a cut point at height $2k$ (for some $k$ between $0$ and $n$), then avoids the center line afterward.</p>
 	<img src="images/p13.example_path.png" />
 
-	<p>The result is that the top section (from level $0$ to level $2k$) is a diamond path and has $\binom{2k}k$ possibilities, and the bottom section (from level $2k$ to level $2n$) is a fan path which has $\binom{2n-2k}{n-k}$ possibilities, and therefore the total number of possibilities is $\binom{2k}{k}\binom{2n-2k}{n-k}$.</p>
+	<p>Given any path, if we cut it at its cut point, we get two pieces.  The piece from the top to the cut point is a diamond path.  And the piece from the cut point to the bottom is a fan path.  The diamond path (from level $0$ to level $2k$) has $\binom{2k}k$ possibilities, and the fan path (from level $2k$ to level $2n$) has $\binom{2n-2k}{n-k}$ possibilities, and therefore the total number of possibilities is $\binom{2k}{k}\binom{2n-2k}{n-k}$.  That is, the part of the partition of cut point height $2k$ contains exactly $\binom{2k}{k}\binom{2n-2k}{n-k}$ lattice paths.</p>
 	<img src="images/p14.diamond_and_fan_sets.png" />
 
-	<p>Summing these from $k=0$ to $k=n$ yields all possible paths!  If this is not clear, consider that every path must intersect the centerline because its very first point intersects the center line.  If we take the bottomost intersection with the centerline, then this splits the path into two pieces.  The piece from the beginning to this intersection is a diamond path.  And the piece from the intersection to the bottom is a fan path.</p>
+	<p>Since this is a partition, summing these from $k=0$ to $k=n$ yields all possible paths!</p>
 
 	<p>Finally, we find the total number of paths a different way.  Consider you are at the top and want to know the total number of possible paths.  You will pass $2n$ levels exactly (levels $0$ through $2n-1$), and as you pass each, you will have exactly $2$ options (left or right).  Therefore, the total number of paths is $2^{2n}=4^n$.</p>
 
